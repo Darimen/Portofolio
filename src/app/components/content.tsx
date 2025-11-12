@@ -11,7 +11,7 @@ export default function Content() {
 
   useEffect(() => {
     setHeight(ref.current.clientHeight);
-    console.log("Height set to: " + ref.current.clientHeight);
+    //console.log("Height set to: " + ref.current.clientHeight);
   }, [setHeight]);
 
   return (

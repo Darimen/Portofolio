@@ -7,9 +7,8 @@ export default function Home() {
 
 
   function myFunction() {
-    var popup = document.getElementById("myPopup");
-    // @ts-ignore
-    popup.classList.toggle("show");
+    let popup = document.getElementById("myPopup");
+    popup?.classList.toggle("show");
   }
 
   return (

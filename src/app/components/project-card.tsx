@@ -27,7 +27,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
     function toggleOpen() {
         setOpen(!open);
-        console.log(open);
+        //console.log(open);
     }
 
     // NEW: handle open/close so the close animation can play

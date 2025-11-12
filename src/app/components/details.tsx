@@ -58,7 +58,7 @@ export default function Details() {
   const [postsThatMatch, setPostsThatMatch] = useState(getPostsThatMatchActiveTags());
 
   useEffect(() => {
-    console.log("Tags changed: " + tags);
+    //console.log("Tags changed: " + tags);
     setPostsThatMatch(getPostsThatMatchActiveTags());
   }, [tags]);
 

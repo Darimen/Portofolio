@@ -53,7 +53,7 @@ export function getTagAbb(tag: string): string {
 }
 
 export function getTagFull(tag: string): string {
-    // @ts-ignore
+    // @ts-expect-error
     return tags[tag] ? tags[tag] : tag;
 
 }

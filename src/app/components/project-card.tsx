@@ -1,7 +1,7 @@
 "use client"
 
 import { useAppContext } from "../context";
-import { act, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { getTagFull } from "../tags";
 import HR from "./horizontal-line";
 
@@ -57,13 +57,6 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
         setTags(activeTags.filter((it) => it !== tag));
     }
 
-    function searchedTags(tags: string[]): string[] {
-        //if (setter === "tag") {
-        return tags.filter((it) => activeTags.find((tag) => tag === it));
-        //}
-        return [];
-    }
-
     // if not a full fit, then empty
     function searchedTagsFully(tags: string[]): string[] {
 
@@ -90,7 +83,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
             <div className={"grid grid-cols-12  items-center w-full p-4 rounded-t-2xl  ".concat(isVisible ? "openCard" : "")}>
                 {/* title */}
-                <div className="flex col-span-4 align-top flex-row gap-2 justify-baseline w-full" onClick={(e) => toggleBody()}>
+                <div className="flex col-span-4 align-top flex-row gap-2 justify-baseline w-full" onClick={() => toggleBody()}>
                     <h1 className="text-xl text-wrap wrap-anywhere" >{project.title}</h1>
                     <div className={isVisible ? "text-xl" : ""}> {/* so they look the same size :D */}
                         {isVisible ? "▼" : "▶"}

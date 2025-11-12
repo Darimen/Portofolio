@@ -53,7 +53,7 @@ export function getTagAbb(tag: string): string {
 }
 
 export function getTagFull(tag: string): string {
-    // @ts-expect-error
+    // @ts-expect-error --- TS doesn't like dynamic access on objects
     return tags[tag] ? tags[tag] : tag;
 
 }

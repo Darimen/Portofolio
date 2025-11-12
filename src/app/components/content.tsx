@@ -6,11 +6,12 @@ import { useEffect, useRef, useState } from "react";
 export default function Content() {
 
   const [height, setHeight] = useState(0);
-  const ref = useRef<any>(null);
+
+  const ref = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
-    setHeight(ref.current.clientHeight);
+    setHeight(ref.current?.clientHeight ?? 0);
     //console.log("Height set to: " + ref.current.clientHeight);
   }, [setHeight]);
 

@@ -7,7 +7,7 @@ export default function Home() {
 
 
   function myFunction() {
-    let popup = document.getElementById("myPopup");
+    const popup = document.getElementById("myPopup");
     popup?.classList.toggle("show");
   }
 

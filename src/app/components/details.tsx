@@ -2,7 +2,7 @@
 
 import HR from "./horizontal-line";
 import { useAppContext } from "../context";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { projects } from "../projects";
 
 

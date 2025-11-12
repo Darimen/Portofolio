@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --selected: #fcd13a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.tag {
+  border-radius: 20px;
+  background-color: rgb(233, 233, 233);
+  border-width: 2px;
+  border-color: rgb(155, 155, 155);
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag:hover {
+  border-color: rgb(253, 201, 58);
+  background-color: rgb(255, 252, 105);
+}
+
+.tag:active {
+  border-color: rgb(253, 201, 58);
+  background-color: rgb(255, 210, 87);
+}
+
+.selectedTag {
+  border-width: 2px;
+  border-radius: 20px;
+  border-color: rgb(253, 201, 58);
+  background-color: rgb(255, 210, 87);
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectedTag:hover {
+  border-color: darkgrey;
+  background-color: rgb(83, 83, 83);
+  color: #ededed;
+}
+
+.selectedTag:active {
+  background-color: darkgrey;
+  border-color: rgb(83, 83, 83);
+}
+
+.projectCard {
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: #0a0a0a;
+}
+
+.selectedProjectCard {
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: rgb(255, 210, 87);
+}
+
+.selectedTagPostTitle-lazyDeveloper {
+  border-width: 2px;
+  border-radius: 20px;
+  border-color: rgb(253, 201, 58);
+  background-color: rgb(255, 210, 87);
+  user-select: none;
+}
+
+.openCard{
+  background-color: rgba(65, 105, 225, 0.30);
+  border-bottom: var(--gray-300) 4px solid;
+}
+
+
+/* https://www.w3schools.com/howto/howto_js_popup.asp 🙏 */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 10rem;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/* that shameful site -> */
+
+@keyframes slideDown {
+  0%   { transform: translateY(-10px); opacity: 0; }
+  100% { transform: translateY(0);     opacity: 1; }
+}
+.slideDown { animation: slideDown 0.3s ease-in-out forwards; }
+
+@keyframes slideUp {
+  0%   { transform: translateY(0);     opacity: 1; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+.slideUp { animation: slideUp 0.3s ease-in-out forwards; }
+
+
+/* webkit scroll bar */
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(65, 105, 225, 0.30);
+  border-radius: 4px;
+}

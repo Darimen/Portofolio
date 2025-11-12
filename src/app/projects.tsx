@@ -6,7 +6,7 @@ export const projects: ProjectStructI[] = [
         description: "Odaia is a platform that is designed to help its users to find tennants, roommates and to manage household utility bills.",
         challenges: ["Design a scalable database schema", "Manage application deployment and environment setup", "Optimize api calls performance"],
         responsabilities: ["Fullstack development", "DevOps", "Database management", "Server administration"],
-        imageUrl: "/odaia.png",
+        imageUrl: "odaia.png",
         projectUrl: "https://test.odaia.eu",
         tags: ["HTML", "CSS", "JS", "TS", "NJS",
             "RJS", "TCSS", "JSX", "SB", "JAV",
@@ -18,7 +18,7 @@ export const projects: ProjectStructI[] = [
     {
         title: "Movie Recommendation Website",
         description: "A web application that lets users search for movies, view details, leave reviews and get recommendations based on the movie.\n\n This was a group project made for Software Engineering course at university. It was our first contact with Spring Boot framework and REST API development.",
-        imageUrl: "/movie_site.png",
+        imageUrl: "movie_site.png",
         responsabilities: ["Security implementation", "Database management"],
         gitUrl: "https://github.com/Casee1/Movie-recommendation-system-Springboot",
         tags: ["HTML", "CSS", "JS", "AXO", "RJS", "JAV", "RST", "MDB", "GIT",

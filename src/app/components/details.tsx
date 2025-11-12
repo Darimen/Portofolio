@@ -64,7 +64,7 @@ export default function Details() {
 
   return (
     <div className="flex flex-col items-center pt-4">
-      <img className="w-16 h-16 bg-gray-300 rounded-full mb-4 object-cover" src={"/poza.png"} />
+      <img className="w-16 h-16 bg-gray-300 rounded-full mb-4 object-cover" src={"poza.png"} alt="Poza Profil" />
       <h2 className="text-xl font-semibold">Tandea Darius</h2>
       <p className="text-gray-600 mb-2">Full Developer</p>
 
@@ -77,19 +77,19 @@ export default function Details() {
         <ul className="flex gap-4 list-none">
           <li>
             <u>
-              <a href="mailto:sorin.darius2002@gmail.com" target="blank"> <img className="max-h-6" src="/Gmail.png" alt="gmail" /></a>
+              <a href="mailto:sorin.darius2002@gmail.com" target="blank"> <img className="max-h-6" src="Gmail.png" alt="gmail" /></a>
             </u>
           </li>
 
           <li>
             <u>
-              <a href="https://github.com/Darimen" target="blank"> <img className="max-h-6" src="/GitHub_Logo.png" alt="github" /></a>
+              <a href="https://github.com/Darimen" target="blank"> <img className="max-h-6" src="GitHub_Logo.png" alt="github" /></a>
             </u>
           </li>
 
           <li>
             <u>
-              <a href="https://www.linkedin.com/in/sorin-darius-tandea-00a763213/" target="blank"> <img className="max-h-6" src="/LinkedIn.png" alt="github" /></a>
+              <a href="https://www.linkedin.com/in/sorin-darius-tandea-00a763213/" target="blank"> <img className="max-h-6" src="LinkedIn.png" alt="github" /></a>
             </u>
           </li>
         </ul>

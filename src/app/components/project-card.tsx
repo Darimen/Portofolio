@@ -92,7 +92,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
                 {/* tags */}
                 {/* </div><div hidden={setter !== "tag"} className=" gap-3 flex flex-row"> */}
-                <div className={" gap-3 w-full flex flex-row flex-wrap justify-center".concat(project.projectUrl === undefined && project.gitUrl === undefined ? " max-lg:col-span-8 lg:col-span-7 " : " col-span-7 ")}>
+                <div className={" gap-3 w-full flex flex-row flex-wrap justify-center".concat(project.projectUrl === undefined && project.gitUrl === undefined ? " max-lg:col-span-8 lg:col-span-6 " : " col-span-6 ")}>
                     {searchedTagsFully(project.tags).sort((a, b) => a.localeCompare(b)).map((it, index) =>
                         <div className="selectedTagPostTitle-lazyDeveloper h-fit pl-1 pr-1" 
                         key={index} 
@@ -102,9 +102,9 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                     )}
                 </div>
                 {/* links if any :p */}
-                <div className="flex col-span-1 w-full justify-end flex-row gap-2 items-center">
+                <div className="flex col-span-2 w-full justify-end flex-row gap-2 items-center">
 
-                    <a className="text-nowrap" hidden={project.gitUrl === (undefined)} href={project.gitUrl} target="blank"><img className="h-5" src="GitHub_Logo.png" alt="" /></a>
+                    <a className="text-nowrap dark:invert" hidden={project.gitUrl === (undefined)} href={project.gitUrl} target="blank"><img className="h-5" src="GitHub_Logo.png" alt="" /></a>
                     <a className="text-nowrap" hidden={project.projectUrl === (undefined)} href={project.projectUrl} target="blank"><img className="h-5" src="globe.svg" alt="website" /></a>
 
                 </div>

@@ -81,7 +81,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
         } // hide if not matching tags 100%
         >
 
-            <div className={"grid grid-cols-12  items-center w-full p-4 rounded-t-2xl  ".concat(isVisible ? "openCard" : "")}>
+            <div className={"grid grid-cols-12 select-none  items-center w-full p-4 rounded-t-2xl  ".concat(isVisible ? "openCard" : "")}>
                 {/* title */}
                 <div className="flex col-span-4 align-top flex-row gap-2 justify-baseline w-full" onClick={() => toggleBody()}>
                     <h1 className="text-xl text-wrap wrap-anywhere" >{project.title}</h1>
@@ -163,7 +163,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                     {project.imageUrl ?
                         <div>
                             <div>
-                                <img src={project.imageUrl} alt={project.title} className="cursor-pointer" onClick={() => toggleOpen()} />
+                                <img src={project.imageUrl} alt={project.title} className="select-none cursor-pointer" onClick={() => toggleOpen()} />
                             </div>
                             <div className="md:hidden w-full mt-2">
                                 <HR></HR>

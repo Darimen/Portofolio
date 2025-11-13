@@ -19,15 +19,15 @@ export default function Content() {
     <div className="text-center w-full lg:min-w-[100%] flex-col flex max-md:items-center pt-4 pb-4">
       <div className="mb-4 h-fit" ref={ref}>
         <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
-        <p className="text-lg text-gray-700 ">
+        <p className="text-lg text-[--foreground] ">
           Here you’ll find projects I’ve worked on, with brief descriptions, 
           screenshots, and the technologies used
         </p>
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-[--foreground]">
           My main focus is web development, and I also explore server management,
           game development and Cisco networking.
         </p>
-        <p className="text-lg text-gray-700 mb-2">
+        <p className="text-lg text-[--foreground] mb-2">
           Feel free to explore and reach out if you have any questions!
         </p>
         <h2 className="text-2xl font-bold mb-2">Projects:</h2>

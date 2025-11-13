@@ -4,6 +4,21 @@
   --background: #ffffff;
   --foreground: #171717;
   --selected: #fcd13a;
+  --button-background: #f0f0f0;
+  --button-foreground: #171717;
+  --button-border: #cccccc;
+  --tag-background: #e9e9e9;
+  --tag-foreground: #171717;
+  --tag-hover-background: #ffda53;
+  --tag-active-background: #fcd13a;
+  --tag-border: #bbbbbb;
+  --font-geist-sans: 'Geist Sans', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+  --card-background: #f9f9f9;
+  --card-foreground: #171717;
+  --card-border: #dddddd;
+  --card-open-background: rgba(65, 105, 225, 0.30);
+  --card-open-border: var(--gray-600);
 }
 
 @theme inline {
@@ -17,6 +32,24 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --button-background: #1a1a1a;
+    --button-foreground: #ededed;
+    --button-border: #333333;
+    --tag-background: #333333;
+    --tag-foreground: #ededed;
+    --tag-hover-background: #555555;
+    --tag-active-background: #fcd13a;
+    --tag-border: #555555;
+    --selected: #fcd13a;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --card-background: var(--card-background);
+    --card-foreground: var(--card-foreground);
+    --card-border: var(--card-border);
+    --card-open-background: var(--card-open-background);
+    --card-open-border: var(--card-open-border);
   }
 }
 
@@ -29,66 +62,68 @@ body {
 
 .tag {
   border-radius: 20px;
-  background-color: rgb(233, 233, 233);
+  background-color: var(--tag-background);
   border-width: 2px;
-  border-color: rgb(155, 155, 155);
+  border-color: var(--tag-border);
   cursor: pointer;
   user-select: none;
 }
 
 .tag:hover {
-  border-color: rgb(253, 201, 58);
-  background-color: rgb(255, 252, 105);
+  border-color: var(--selected);
+  background-color: var(--tag-hover-background);
 }
 
 .tag:active {
-  border-color: rgb(253, 201, 58);
-  background-color: rgb(255, 210, 87);
+  border-color: var(--selected);
+  background-color: var(--tag-active-background);
 }
 
 .selectedTag {
   border-width: 2px;
   border-radius: 20px;
-  border-color: rgb(253, 201, 58);
-  background-color: rgb(255, 210, 87);
+  border-color: var(--selected);
+  background-color: var(--tag-active-background);
+  color: #000000;
   cursor: pointer;
   user-select: none;
 }
 
 .selectedTag:hover {
   border-color: darkgrey;
-  background-color: rgb(83, 83, 83);
-  color: #ededed;
+  background-color: var(--tag-border);
+  color: #000000;
 }
 
 .selectedTag:active {
   background-color: darkgrey;
-  border-color: rgb(83, 83, 83);
+  border-color: var(--tag-border);
 }
 
 .projectCard {
   border-radius: 20px;
   border-width: 2px;
-  border-color: #0a0a0a;
+  border-color: var(--tag-border);
 }
 
 .selectedProjectCard {
   border-radius: 20px;
   border-width: 2px;
-  border-color: rgb(255, 210, 87);
+  border-color: var(--selected);
 }
 
 .selectedTagPostTitle-lazyDeveloper {
   border-width: 2px;
   border-radius: 20px;
-  border-color: rgb(253, 201, 58);
-  background-color: rgb(255, 210, 87);
+  border-color: var(--selected);
+  background-color: var(--selected);
+  color: #000000;
   user-select: none;
 }
 
 .openCard{
-  background-color: rgba(65, 105, 225, 0.30);
-  border-bottom: var(--gray-300) 4px solid;
+  background-color: var(--card-open-background);
+  border-bottom: var(--card-open-border) 4px solid;
 }
 
 
@@ -108,7 +143,7 @@ body {
 .popup .popuptext {
   visibility: hidden;
   width: 10rem;
-  background-color: #555;
+  background-color: var(--tag-border);
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -129,7 +164,7 @@ body {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-color: var(--tag-border) transparent transparent transparent;
 }
 
 /* Toggle this class - hide and show the popup */
@@ -171,6 +206,6 @@ body {
   width: 2px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(65, 105, 225, 0.30);
+  background-color: var(--card-open-background);
   border-radius: 4px;
 }

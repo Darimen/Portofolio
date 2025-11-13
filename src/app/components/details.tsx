@@ -64,9 +64,12 @@ export default function Details() {
 
   return (
     <div className="flex flex-col items-center pt-4">
+      <div className="theme-switch">
+        
+      </div>
       <img className="w-16 h-16 bg-gray-300 rounded-full mb-4 object-cover" src={"poza.png"} alt="Poza Profil" />
       <h2 className="text-xl font-semibold">Tandea Darius</h2>
-      <p className="text-gray-600 mb-2">Full Developer</p>
+      <p className="text-foreground mb-2">Junior Full-Stack Web Developer</p>
 
       <h3 className="text-lg">
         Contact
@@ -83,7 +86,8 @@ export default function Details() {
 
           <li>
             <u>
-              <a href="https://github.com/Darimen" target="blank"> <img className="max-h-6" src="GitHub_Logo.png" alt="github" /></a>
+              {/* just found out of invert, but I like more the info with that white background when in dark mode.  */}
+              <a href="https://github.com/Darimen" target="blank"> <img className="max-h-6 dark:invert" src="GitHub_Logo.png" alt="github" /></a>
             </u>
           </li>
 
@@ -308,11 +312,11 @@ export default function Details() {
 
       </ul>
 
-      <button className="mt-4 mb-4 px-4 py-2 bg-gray-300 rounded-lg md:hidden" onClick={() => { setModalOpen(true); }}>Show Technical Skills & Languages</button>
+      <button className="mt-4 mb-4 px-4 py-2 bg-background border rounded-lg md:hidden" onClick={() => { setModalOpen(true); }}>Show Technical Skills & Languages</button>
 
       {modalOpen &&
-        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg m-2">
+        <div className="fixed inset-0 bg-background bg-opacity-20 flex items-center justify-center z-50">
+          <div className="bg-background p-6 rounded-lg m-2">
             <h2 className="text-2xl mb-4">Technical Skills & Languages</h2>
             <div className="max-h-[60vh] h-full overflow-y-auto">
 
@@ -547,7 +551,7 @@ export default function Details() {
                 with the selected tags.
               </div>
 
-              <button className="mt-4 px-4 py-2 bg-gray-300 rounded-lg" onClick={() => { setModalOpen(false); }}>Close</button>
+              <button className="mt-4 px-4 py-2 bg-background border rounded-lg" onClick={() => { setModalOpen(false); }}>Close</button>
             </div>
           </div>
         </div>

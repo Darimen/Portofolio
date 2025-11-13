@@ -292,10 +292,10 @@ export default function Details() {
         <li>
           <h2 className="text-xl"> Spoken Languages: </h2>
           <ul className="ml-4 text-lg">
-            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">Romanian:</div> <div className="min-md:max-lg:indent-1">Native</div></li>
-            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">English:</div> <div className="min-md:max-lg:indent-1">Fluent</div></li>
-            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">German:</div> <div className="min-md:max-lg:indent-1">Basic</div></li>
-            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">French:</div> <div className="min-md:max-lg:indent-1">Basic</div></li>
+            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">Romanian:</div> <div className="md:max-lg:indent-1">Native</div></li>
+            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">English:</div> <div className="md:max-lg:indent-1">Fluent</div></li>
+            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">German:</div> <div className="md:max-lg:indent-1">Basic</div></li>
+            <li className=" grid grid-cols-2 max-lg:grid-cols-1"><div className="font-semibold">French:</div> <div className="md:max-lg:indent-1">Basic</div></li>
           </ul>
         </li>
 
@@ -308,7 +308,7 @@ export default function Details() {
 
       </ul>
 
-      <button className="mt-4 mb-4 px-4 py-2 bg-gray-300 rounded-lg min-md:hidden" onClick={() => { setModalOpen(true); }}>Show Technical Skills & Languages</button>
+      <button className="mt-4 mb-4 px-4 py-2 bg-gray-300 rounded-lg md:hidden" onClick={() => { setModalOpen(true); }}>Show Technical Skills & Languages</button>
 
       {modalOpen &&
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50">

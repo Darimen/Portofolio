@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div>
 
-      <div className="font-sans flex flex-row max-md:flex-col relative justify-items-center min-h-screen min-xl:ml-20 min-xl:mr-20 pl-8 pr-8 gap-16 max-md:pl-0 max-md:pr-0 ">
+      <div className="font-sans flex flex-row max-md:flex-col relative justify-items-center min-h-screen xl:ml-20 xl:mr-20 pl-8 pr-8 gap-16 max-md:pl-0 max-md:pr-0 ">
 
-        <div className="border-r-2 overflow-y-auto min-lg:w-[20%] border-gray-300 min-md:h-screen max-md:border-r-0 max-md:border-b-2 max-md:w-full max-md:h-fit pb-4 max-md:flex max-md:flex-row max-md:justify-around">
+        <div className="border-r-2 overflow-y-auto lg:w-[20%] border-gray-300 md:h-screen max-md:border-r-0 max-md:border-b-2 max-md:w-full max-md:h-fit pb-4 max-md:flex max-md:flex-row max-md:justify-around">
 
           <Details />
         </div>

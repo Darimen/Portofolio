@@ -16,7 +16,7 @@ export default function Content() {
   }, [setHeight]);
 
   return (
-    <div className="text-center w-full min-lg:min-w-[100%] flex-col flex max-md:items-center pt-4 pb-4">
+    <div className="text-center w-full lg:min-w-[100%] flex-col flex max-md:items-center pt-4 pb-4">
       <div className="mb-4 h-fit" ref={ref}>
         <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
         <p className="text-lg text-gray-700 ">
@@ -32,7 +32,7 @@ export default function Content() {
         </p>
         <h2 className="text-2xl font-bold mb-2">Projects:</h2>
       </div>
-      {/* min-lg:h-[calc(100vh-${height}px)] */}
+      {/* lg:h-[calc(100vh-${height}px)] */}
 
       <div style={{ height: `calc(95vh - ${height}px)` }} className={`flex flex-col gap-4  overflow-y-scroll w-full  max-md:w-[99vw]`}>
 

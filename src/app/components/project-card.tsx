@@ -92,7 +92,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
                 {/* tags */}
                 {/* </div><div hidden={setter !== "tag"} className=" gap-3 flex flex-row"> */}
-                <div className={" gap-3 w-full flex flex-row flex-wrap justify-center".concat(project.projectUrl === undefined && project.gitUrl === undefined ? " col-span-8 " : " col-span-7 ")}>
+                <div className={" gap-3 w-full flex flex-row flex-wrap justify-center".concat(project.projectUrl === undefined && project.gitUrl === undefined ? " max-lg:col-span-8 lg:col-span-7 " : " col-span-7 ")}>
                     {searchedTagsFully(project.tags).sort((a, b) => a.localeCompare(b)).map((it, index) =>
                         <div className="selectedTagPostTitle-lazyDeveloper h-fit pl-1 pr-1" 
                         key={index} 
@@ -120,7 +120,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                         setIsVisible(false);       // actually hide after slideUp finishes
                     }
                 }}
-                className={`${isClosing ? "slideUp" : "slideDown"} flex min-md:flex-row gap-2 p-4 text-left w-full max-md:flex-col-reverse `}
+                className={`${isClosing ? "slideUp" : "slideDown"} flex md:flex-row gap-2 p-4 text-left w-full max-md:flex-col-reverse `}
             >
                 {/* the robot did the slide up animation and added it, ngl */}
                 <div className="w-5/7 max-md:w-full">
@@ -157,7 +157,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                             </div>
                         )}
                     </div>
-                    <div className="min-md:hidden w-full">
+                    <div className="md:hidden w-full">
                         <HR></HR>
                     </div>
                     {project.imageUrl ?
@@ -165,7 +165,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                             <div>
                                 <img src={project.imageUrl} alt={project.title} className="cursor-pointer" onClick={() => toggleOpen()} />
                             </div>
-                            <div className="min-md:hidden w-full mt-2">
+                            <div className="md:hidden w-full mt-2">
                                 <HR></HR>
                             </div>
                         </div>

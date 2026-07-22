@@ -1,0 +1,19 @@
+name: Deploy On Remote Server
+
+on:
+  push:
+    branches: ["delpoy/prod"]
+
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: deploy
+        env:
+          WEBHOOK: ${{ secrets.WEBHOOK }}
+        run: |
+          eval "$WEBHOOK"

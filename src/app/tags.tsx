@@ -1,6 +1,5 @@
 export const tags =
 {
-
     "HTML": "HTML",
     "CSS": "CSS",
     "JS": "Javascript",

@@ -2,6 +2,7 @@
 import ProjectCard from "./project-card";
 import { projects } from "../projects";
 import { useEffect, useRef, useState } from "react";
+import DiplomaCarousel from "./diplomas-carousel";
 
 export default function Content() {
 
@@ -20,19 +21,18 @@ export default function Content() {
       <div className="mb-4 h-fit" ref={ref}>
         <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
         <p className="text-lg text-[--foreground] ">
-          Here you’ll find projects I’ve worked on, with brief descriptions, 
-          screenshots, and the technologies used
+          Here you'll find projects I've worked on, with brief descriptions, 
+          screenshots, and the technologies I used.
         </p>
         <p className="text-lg text-[--foreground]">
-          My main focus is web development, and I also explore server management,
-          game development and Cisco networking.
+          I am passionate about a wide range of hardware and software related areas. I have experience developing and deploying web applications
+          using the tools and technologies listed in the details section, but I am always eager to learn and explore new technologies and domains.
         </p>
         <p className="text-lg text-[--foreground] mb-2">
-          Feel free to explore and reach out if you have any questions!
+          Feel free to reach out if you have any questions or suggestions!
         </p>
         <h2 className="text-2xl font-bold mb-2">Projects:</h2>
       </div>
-      {/* lg:h-[calc(100vh-${height}px)] */}
 
       <div style={{ height: `calc(95vh - ${height}px)` }} className={`flex flex-col gap-4  overflow-y-scroll w-full  max-md:w-[99vw]`}>
 
@@ -41,6 +41,12 @@ export default function Content() {
 
         {projects.sort((a, b) => b.tags.length - a.tags.length).map((it, index) => <ProjectCard key={index} project={it} />)}
 
+      </div>
+      <div>
+        <h2 className="text-2xl font-bold mb-2">Other achievements:</h2>
+        <div>
+          <DiplomaCarousel/>
+        </div>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ export interface ProjectStructI {
     projectUrl?: string,
     gitUrl?: string,
     tags: string[]
+    moreDetails?: string
 }
 
 export default function ProjectCard({ project }: { project: ProjectStructI }) {
@@ -22,6 +23,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
     const [isVisible, setIsVisible] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [showMoreDetails, setShowMoreDetails] = useState(false);
 
     const [open, setOpen] = useState(false);
 
@@ -51,6 +53,11 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
             }
         }
 
+    }
+
+    function toggleDetails(){
+        console.log("triggered from: ",project.title)
+        setShowMoreDetails(!showMoreDetails);
     }
 
     function disableSelectedTag(tag: string) {
@@ -142,6 +149,19 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
                         :
                         null
                     }
+
+                    {project.moreDetails?
+                    <>
+                    <button className="bg-amber-100 rounded-2xl p-1 hover:bg-amber-200" onClick={()=>toggleDetails()}>More details</button>
+
+                    <div className="border p-1 rounded-xl" hidden={!showMoreDetails}>
+                        {project.moreDetails}
+                    </div>
+                    
+                    </>
+                    :
+                    null
+                }
                 </div>
 
                 <div className={`w-2/7 max-md:w-full flex flex-col gap-2 items-center `}>
@@ -175,7 +195,7 @@ export default function ProjectCard({ project }: { project: ProjectStructI }) {
 
             </div>
 
-            {/* THIS IS THE MODAL, IGNORE IT!!!!!. BUT THIS ONE HELPED ME GPT TO CENTER IT. AND ADDED THAT COOL BACKGROUND. */}
+            {/* THIS IS THE MODAL, IGNORE IT!!!!!. BUT THIS ONE HELPED ME GPT TO CENTER IT. AND ADDED THAT BACKGROUND COLOR. */}
             <div className={`fixed inset-0 flex items-center justify-center bg-black/50`} hidden={!open} onClick={toggleOpen}> {/* backdrop  */}
                 <img src={project.imageUrl} alt="project" className="max-w-[80vw] max-h-[80vh]" />
             </div>

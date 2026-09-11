@@ -31,7 +31,7 @@ export default function Home() {
     {/* since the photo is black always, it's easier to add a white background, than to dinamically change the image, right? and this will make the design
     work on black or white theme.  */}
         <div className="popup bg-white rounded-4xl !fixed !right-18 !bottom-4" onClick={() => myFunction()}>
-          <img className="w-10" src="/info.svg" alt="" title="When changing tags from posts, the ones currently selected will be reset." />
+          <img className="w-10" src="info.svg" alt="" title="When changing tags from posts, the ones currently selected will be reset." />
           <span className="popuptext " id="myPopup">When changing tags from posts, or the other way around, the ones currently selected will be reset.</span>
         </div>
 

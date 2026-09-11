@@ -2,8 +2,9 @@
 
 import HR from "./horizontal-line";
 import { useAppContext } from "../context";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projects } from "../projects";
+import { ToolAcronym, ToolClassification, tools } from "../tools";
 
 
 export default function Details() {
@@ -62,6 +63,14 @@ export default function Details() {
     setPostsThatMatch(getPostsThatMatchActiveTags());
   }, [tags]);
 
+  const formatCategory = (name:string) => {
+    return name.charAt(0).concat(name.substring(1).toLowerCase())
+  }
+
+  // Build the list from the classifications actually used by the tools so
+  // every category with tools is rendered, regardless of enum representation.
+  const categories = Array.from(new Set(tools.map((tool) => tool.class)));
+
   return (
     <div className="flex flex-col items-center pt-4">
       <div className="theme-switch">
@@ -69,7 +78,7 @@ export default function Details() {
       </div>
       <img className="w-16 h-16 bg-gray-300 rounded-full mb-4 object-cover" src={"poza.png"} alt="Poza Profil" />
       <h2 className="text-xl font-semibold">Tandea Darius</h2>
-      <p className="text-foreground mb-2">Junior Full-Stack Web Developer</p>
+      <p className="text-foreground mb-2">Software Engineer Intern</p>
 
       <h3 className="text-lg">
         Contact
@@ -109,187 +118,33 @@ export default function Details() {
           <h2 className="text-xl"> Technical Skills: </h2>
           <ul className="ml-4">
 
-            <li className="mb-2">
-              <h2 className="text-lg">Frontend:</h2>
-              <div className="flex flex-wrap flex-row gap-3 ">
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "HTML") ? "selectedTag" : "tag")} data-tag="HTML" onClick={() => toggleTag("HTML")}>
-                  HTML ({getPostsCountForTag("HTML")})
+            {categories?.map((category) => (
+              <li key={category} className="mb-2">
+                <h2 className="text-lg">{formatCategory(Object.values(ToolClassification).at(category)?.toString() ?? "UNDEFINED")}</h2>
+
+                <div className="flex flex-wrap flex-row gap-3">
+                  
+                  {tools?.filter((tool) => tool.class === category)
+                    .map((tool) => {
+
+                      const acronym = Object.values(ToolAcronym).at(tool.acronym)?.toString() ?? "UNDEFINED"
+                      const isSelected = tags.includes(acronym);
+                      return (
+                        <div
+                          key={tool.acronym}
+                          className={`flex pl-1 pr-1 ${isSelected ? "selectedTag" : "tag"}`}
+                          data-tag={tool.acronym}
+                          onClick={() => toggleTag(acronym)}
+                        >
+                          {tool.displayName} ({getPostsCountForTag(acronym)})
+                        </div>
+                      );
+                    })}
+
                 </div>
+              </li>
+            ))}
 
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CSS") ? "selectedTag" : "tag")} data-tag="CSS" onClick={() => toggleTag("CSS")}>
-                  CSS ({getPostsCountForTag("CSS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JS") ? "selectedTag" : "tag")} data-tag="JS" onClick={() => toggleTag("JS")}>
-                  Javascript ({getPostsCountForTag("JS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JQ") ? "selectedTag" : "tag")} data-tag="JQ" onClick={() => toggleTag("JQ")}>
-                  jQuery ({getPostsCountForTag("JQ")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "AJX") ? "selectedTag" : "tag")} data-tag="AJX" onClick={() => toggleTag("AJX")}>
-                  Ajax ({getPostsCountForTag("AJX")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "AXO") ? "selectedTag" : "tag")} data-tag="AXO" onClick={() => toggleTag("AXO")}>
-                  Axios ({getPostsCountForTag("AXO")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TCSS") ? "selectedTag" : "tag")} data-tag="TCSS" onClick={() => toggleTag("TCSS")}>
-                  TailwindCSS ({getPostsCountForTag("TCSS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "NJS") ? "selectedTag" : "tag")} data-tag="NJS" onClick={() => toggleTag("NJS")}>
-                  NextJS ({getPostsCountForTag("NJS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RJS") ? "selectedTag" : "tag")} data-tag="RJS" onClick={() => toggleTag("RJS")}>
-                  ReactJS ({getPostsCountForTag("RJS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TS") ? "selectedTag" : "tag")} data-tag="TS" onClick={() => toggleTag("TS")}>
-                  Typescript ({getPostsCountForTag("TS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JSX") ? "selectedTag" : "tag")} data-tag="JSX" onClick={() => toggleTag("JSX")}>
-                  JSX ({getPostsCountForTag("JSX")})
-                </div>
-
-              </div>
-            </li>
-
-            <li className="mb-2">
-              <h2 className="text-lg">Backend:</h2>
-              <div className="flex flex-wrap flex-row gap-3">
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "SB") ? "selectedTag" : "tag")} data-tag="SB" onClick={() => toggleTag("SB")}>
-                  Spring Boot ({getPostsCountForTag("SB")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "DGS") ? "selectedTag" : "tag")} data-tag="DGS" onClick={() => toggleTag("DGS")}>
-                  Netflix DGS ({getPostsCountForTag("DGS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JAV") ? "selectedTag" : "tag")} data-tag="JAV" onClick={() => toggleTag("JAV")}>
-                  Java ({getPostsCountForTag("JAV")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RMQ") ? "selectedTag" : "tag")} data-tag="RMQ" onClick={() => toggleTag("RMQ")}>
-                  RabbitMQ ({getPostsCountForTag("RMQ")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RST") ? "selectedTag" : "tag")} data-tag="RST" onClick={() => toggleTag("RST")}>
-                  REST ({getPostsCountForTag("RST")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GRPC") ? "selectedTag" : "tag")} data-tag="GRPC" onClick={() => toggleTag("GRPC")}>
-                  GRPC ({getPostsCountForTag("GRPC")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GQL") ? "selectedTag" : "tag")} data-tag="GQL" onClick={() => toggleTag("GQL")}>
-                  GraphQL ({getPostsCountForTag("GQL")})
-                </div>
-
-              </div>
-            </li>
-
-            <li className="mb-2">
-              <h2 className="text-lg">Databases:</h2>
-              <div className="flex flex-wrap flex-row gap-3">
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "SQL") ? "selectedTag" : "tag")} data-tag="SQL" onClick={() => toggleTag("SQL")}>
-                  SQL ({getPostsCountForTag("SQL")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PSQL") ? "selectedTag" : "tag")} data-tag="PSQL" onClick={() => toggleTag("PSQL")}>
-                  ProgreSQL ({getPostsCountForTag("PSQL")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "MDB") ? "selectedTag" : "tag")} data-tag="MDB" onClick={() => toggleTag("MDB")}>
-                  MongoDB ({getPostsCountForTag("MDB")})
-                </div>
-
-              </div>
-            </li>
-
-            <li className="mb-2">
-              <h2 className="text-lg">DevOps:</h2>
-              <div className="flex flex-wrap flex-row gap-3">
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "DOCK") ? "selectedTag" : "tag")} data-tag="DOCK" onClick={() => toggleTag("DOCK")}>
-                  Docker ({getPostsCountForTag("DOCK")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "EC2") ? "selectedTag" : "tag")} data-tag="EC2" onClick={() => toggleTag("EC2")}>
-                  AWS EC2 ({getPostsCountForTag("EC2")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GCPS") ? "selectedTag" : "tag")} data-tag="GCPS" onClick={() => toggleTag("GCPS")}>
-                  GCP Bucket ({getPostsCountForTag("GCPS")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "LIN") ? "selectedTag" : "tag")} data-tag="LIN" onClick={() => toggleTag("LIN")}>
-                  Linux ({getPostsCountForTag("LIN")})
-                </div>
-              </div>
-            </li>
-
-            <li className="mb-2">
-              <h2 className="text-lg">Other:</h2>
-              <div className="flex flex-wrap flex-row gap-3">
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GIT") ? "selectedTag" : "tag")} data-tag="GIT" onClick={() => toggleTag("GIT")}>
-                  GitHub ({getPostsCountForTag("GIT")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PMAN") ? "selectedTag" : "tag")} data-tag="PMAN" onClick={() => toggleTag("PMAN")}>
-                  Postman ({getPostsCountForTag("PMAN")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CF") ? "selectedTag" : "tag")} data-tag="CF" onClick={() => toggleTag("CF")}>
-                  Cloudflare ({getPostsCountForTag("CF")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "NGINX") ? "selectedTag" : "tag")} data-tag="NGINX" onClick={() => toggleTag("NGINX")}>
-                  nginx ({getPostsCountForTag("NGINX")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CERTBOT") ? "selectedTag" : "tag")} data-tag="CERTBOT" onClick={() => toggleTag("CERTBOT")}>
-                  Certbot ({getPostsCountForTag("CERTBOT")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TRA") ? "selectedTag" : "tag")} data-tag="TRA" onClick={() => toggleTag("TRA")}>
-                  Traefik ({getPostsCountForTag("TRA")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PY") ? "selectedTag" : "tag")} data-tag="PY" onClick={() => toggleTag("PY")}>
-                  Python ({getPostsCountForTag("PY")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "C/C++") ? "selectedTag" : "tag")} data-tag="C/C++" onClick={() => toggleTag("C/C++")}>
-                  C/C++ ({getPostsCountForTag("C/C++")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "C#") ? "selectedTag" : "tag")} data-tag="C#" onClick={() => toggleTag("C#")}>
-                  C# ({getPostsCountForTag("C#")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "UNITY") ? "selectedTag" : "tag")} data-tag="UNITY" onClick={() => toggleTag("UNITY")}>
-                  Unity ({getPostsCountForTag("UNITY")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "INO") ? "selectedTag" : "tag")} data-tag="INO" onClick={() => toggleTag("INO")}>
-                  Arduino IDE ({getPostsCountForTag("INO")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "3D") ? "selectedTag" : "tag")} data-tag="3D" onClick={() => toggleTag("3D")}>
-                  3D Modelling ({getPostsCountForTag("3D")})
-                </div>
-
-                <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "BLENDER") ? "selectedTag" : "tag")} data-tag="BLENDER" onClick={() => toggleTag("BLENDER")}>
-                  Blender ({getPostsCountForTag("BLENDER")})
-                </div>
-
-
-              </div>
-            </li>
           </ul>
         </li>
 
@@ -327,187 +182,33 @@ export default function Details() {
                     <h2 className="text-xl"> Technical Skills: </h2>
                     <ul className="ml-4">
 
-                      <li className="mb-2">
-                        <h2 className="text-lg">Frontend:</h2>
-                        <div className="flex flex-wrap flex-row gap-3 ">
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "HTML") ? "selectedTag" : "tag")} data-tag="HTML" onClick={() => toggleTag("HTML")}>
-                            HTML ({getPostsCountForTag("HTML")})
+                      {categories?.map((category) => (
+                        <li key={category} className="mb-2">
+                          <h2 className="text-lg">{formatCategory(Object.values(ToolClassification).at(category)?.toString() ?? "UNDEFINED")}</h2>
+
+                          <div className="flex flex-wrap flex-row gap-3">
+                            
+                            {tools?.filter((tool) => tool.class === category)
+                              .map((tool) => {
+
+                                const acronym = Object.values(ToolAcronym).at(tool.acronym)?.toString() ?? "UNDEFINED"
+                                const isSelected = tags.includes(acronym);
+                                return (
+                                  <div
+                                    key={tool.acronym}
+                                    className={`flex pl-1 pr-1 ${isSelected ? "selectedTag" : "tag"}`}
+                                    data-tag={tool.acronym}
+                                    onClick={() => toggleTag(acronym)}
+                                  >
+                                    {tool.displayName} ({getPostsCountForTag(acronym)})
+                                  </div>
+                                );
+                              })}
+
                           </div>
+                        </li>
+                      ))}
 
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CSS") ? "selectedTag" : "tag")} data-tag="CSS" onClick={() => toggleTag("CSS")}>
-                            CSS ({getPostsCountForTag("CSS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JS") ? "selectedTag" : "tag")} data-tag="JS" onClick={() => toggleTag("JS")}>
-                            Javascript ({getPostsCountForTag("JS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JQ") ? "selectedTag" : "tag")} data-tag="JQ" onClick={() => toggleTag("JQ")}>
-                            jQuery ({getPostsCountForTag("JQ")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "AJX") ? "selectedTag" : "tag")} data-tag="AJX" onClick={() => toggleTag("AJX")}>
-                            Ajax ({getPostsCountForTag("AJX")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "AXO") ? "selectedTag" : "tag")} data-tag="AXO" onClick={() => toggleTag("AXO")}>
-                            Axios ({getPostsCountForTag("AXO")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TCSS") ? "selectedTag" : "tag")} data-tag="TCSS" onClick={() => toggleTag("TCSS")}>
-                            TailwindCSS ({getPostsCountForTag("TCSS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "NJS") ? "selectedTag" : "tag")} data-tag="NJS" onClick={() => toggleTag("NJS")}>
-                            NextJS ({getPostsCountForTag("NJS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RJS") ? "selectedTag" : "tag")} data-tag="RJS" onClick={() => toggleTag("RJS")}>
-                            ReactJS ({getPostsCountForTag("RJS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TS") ? "selectedTag" : "tag")} data-tag="TS" onClick={() => toggleTag("TS")}>
-                            Typescript ({getPostsCountForTag("TS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JSX") ? "selectedTag" : "tag")} data-tag="JSX" onClick={() => toggleTag("JSX")}>
-                            JSX ({getPostsCountForTag("JSX")})
-                          </div>
-
-                        </div>
-                      </li>
-
-                      <li className="mb-2">
-                        <h2 className="text-lg">Backend:</h2>
-                        <div className="flex flex-wrap flex-row gap-3">
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "SB") ? "selectedTag" : "tag")} data-tag="SB" onClick={() => toggleTag("SB")}>
-                            Spring Boot ({getPostsCountForTag("SB")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "DGS") ? "selectedTag" : "tag")} data-tag="DGS" onClick={() => toggleTag("DGS")}>
-                            Netflix DGS ({getPostsCountForTag("DGS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "JAV") ? "selectedTag" : "tag")} data-tag="JAV" onClick={() => toggleTag("JAV")}>
-                            Java ({getPostsCountForTag("JAV")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RMQ") ? "selectedTag" : "tag")} data-tag="RMQ" onClick={() => toggleTag("RMQ")}>
-                            RabbitMQ ({getPostsCountForTag("RMQ")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "RST") ? "selectedTag" : "tag")} data-tag="RST" onClick={() => toggleTag("RST")}>
-                            REST ({getPostsCountForTag("RST")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GRPC") ? "selectedTag" : "tag")} data-tag="GRPC" onClick={() => toggleTag("GRPC")}>
-                            GRPC ({getPostsCountForTag("GRPC")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GQL") ? "selectedTag" : "tag")} data-tag="GQL" onClick={() => toggleTag("GQL")}>
-                            GraphQL ({getPostsCountForTag("GQL")})
-                          </div>
-
-                        </div>
-                      </li>
-
-                      <li className="mb-2">
-                        <h2 className="text-lg">Databases:</h2>
-                        <div className="flex flex-wrap flex-row gap-3">
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "SQL") ? "selectedTag" : "tag")} data-tag="SQL" onClick={() => toggleTag("SQL")}>
-                            SQL ({getPostsCountForTag("SQL")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PSQL") ? "selectedTag" : "tag")} data-tag="PSQL" onClick={() => toggleTag("PSQL")}>
-                            ProgreSQL ({getPostsCountForTag("PSQL")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "MDB") ? "selectedTag" : "tag")} data-tag="MDB" onClick={() => toggleTag("MDB")}>
-                            MongoDB ({getPostsCountForTag("MDB")})
-                          </div>
-
-                        </div>
-                      </li>
-
-                      <li className="mb-2">
-                        <h2 className="text-lg">DevOps:</h2>
-                        <div className="flex flex-wrap flex-row gap-3">
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "DOCK") ? "selectedTag" : "tag")} data-tag="DOCK" onClick={() => toggleTag("DOCK")}>
-                            Docker ({getPostsCountForTag("DOCK")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "EC2") ? "selectedTag" : "tag")} data-tag="EC2" onClick={() => toggleTag("EC2")}>
-                            AWS EC2 ({getPostsCountForTag("EC2")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GCPS") ? "selectedTag" : "tag")} data-tag="GCPS" onClick={() => toggleTag("GCPS")}>
-                            GCP Bucket ({getPostsCountForTag("GCPS")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "LIN") ? "selectedTag" : "tag")} data-tag="LIN" onClick={() => toggleTag("LIN")}>
-                            Linux ({getPostsCountForTag("LIN")})
-                          </div>
-                        </div>
-                      </li>
-
-                      <li className="mb-2">
-                        <h2 className="text-lg">Other:</h2>
-                        <div className="flex flex-wrap flex-row gap-3">
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "GIT") ? "selectedTag" : "tag")} data-tag="GIT" onClick={() => toggleTag("GIT")}>
-                            GitHub ({getPostsCountForTag("GIT")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PMAN") ? "selectedTag" : "tag")} data-tag="PMAN" onClick={() => toggleTag("PMAN")}>
-                            Postman ({getPostsCountForTag("PMAN")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CF") ? "selectedTag" : "tag")} data-tag="CF" onClick={() => toggleTag("CF")}>
-                            Cloudflare ({getPostsCountForTag("CF")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "NGINX") ? "selectedTag" : "tag")} data-tag="NGINX" onClick={() => toggleTag("NGINX")}>
-                            nginx ({getPostsCountForTag("NGINX")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "CERTBOT") ? "selectedTag" : "tag")} data-tag="CERTBOT" onClick={() => toggleTag("CERTBOT")}>
-                            Certbot ({getPostsCountForTag("CERTBOT")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "TRA") ? "selectedTag" : "tag")} data-tag="TRA" onClick={() => toggleTag("TRA")}>
-                            Traefik ({getPostsCountForTag("TRA")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "PY") ? "selectedTag" : "tag")} data-tag="PY" onClick={() => toggleTag("PY")}>
-                            Python ({getPostsCountForTag("PY")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "C/C++") ? "selectedTag" : "tag")} data-tag="C/C++" onClick={() => toggleTag("C/C++")}>
-                            C/C++ ({getPostsCountForTag("C/C++")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "C#") ? "selectedTag" : "tag")} data-tag="C#" onClick={() => toggleTag("C#")}>
-                            C# ({getPostsCountForTag("C#")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "UNITY") ? "selectedTag" : "tag")} data-tag="UNITY" onClick={() => toggleTag("UNITY")}>
-                            Unity ({getPostsCountForTag("UNITY")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "INO") ? "selectedTag" : "tag")} data-tag="INO" onClick={() => toggleTag("INO")}>
-                            Arduino IDE ({getPostsCountForTag("INO")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "3D") ? "selectedTag" : "tag")} data-tag="3D" onClick={() => toggleTag("3D")}>
-                            3D Modelling ({getPostsCountForTag("3D")})
-                          </div>
-
-                          <div className={"flex pl-1 pr-1 ".concat(tags.find((it) => it === "BLENDER") ? "selectedTag" : "tag")} data-tag="BLENDER" onClick={() => toggleTag("BLENDER")}>
-                            Blender ({getPostsCountForTag("BLENDER")})
-                          </div>
-
-
-                        </div>
-                      </li>
                     </ul>
                   </li>
 
